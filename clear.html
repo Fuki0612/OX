@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <p id="win_or_lose"></p>
     <div id=container>
         <p>あなたの手番</p>
         <img id="player_turn">
@@ -29,13 +30,22 @@
         }
         image_O.src = './images/image_O.png';
 
-        if (OX===0) {
+        if (OX === 0) {
             document.getElementById("player_turn").src = './images/image_O.png';
-        }else {
+        } else {
             document.getElementById("player_turn").src = './images/image_X.png';
         }
 
         function init() {
+            var win_or_loseString = sessionStorage.getItem('win_or_lose');
+            var win_or_lose = JSON.parse(win_or_loseString);
+            if (win_or_lose === 1) {
+                document.getElementById('win_or_lose').innerHTML = "勝ち";
+            } else if (win_or_lose === 0){
+                document.getElementById('win_or_lose').innerHTML = "引き分け";
+            } else if (win_or_lose === -1){
+                document.getElementById('win_or_lose').innerHTML = "負け";
+            }
             var passDataString = sessionStorage.getItem('endstatus');
             var table = JSON.parse(passDataString);
             const canvas = document.getElementById('myCanvas');
@@ -62,6 +72,7 @@
         init();
 
         function return_button_click() {
+            sessionStorage.clear;
             window.location.href = './index.html';
         }
     </script>

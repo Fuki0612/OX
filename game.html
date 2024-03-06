@@ -194,6 +194,7 @@
                             dataArray[1] += 1;
                             localStorage.setItem('data', JSON.stringify(dataArray));
                             sessionStorage.setItem('endstatus', JSON.stringify(table));
+                            sessionStorage.setItem('win_or_lose', 1);
                             window.location.href = './clear.html';
                         }
                         if (turn === 9) {
@@ -202,6 +203,7 @@
                             dataArray[2] += 1;
                             localStorage.setItem('data', JSON.stringify(dataArray));
                             sessionStorage.setItem('endstatus', JSON.stringify(table));
+                            sessionStorage.setItem('win_or_lose', 0);
                             window.location.href = './clear.html';
                         }
                         ox *= -1;
@@ -212,6 +214,7 @@
                             dataArray[0] += 1;
                             localStorage.setItem('data', JSON.stringify(dataArray));
                             sessionStorage.setItem('endstatus', JSON.stringify(table));
+                            sessionStorage.setItem('win_or_lose', -1);
                             window.location.href = './clear.html';
                         }
                         if (turn === 9) {
@@ -220,6 +223,7 @@
                             dataArray[2] += 1;
                             localStorage.setItem('data', JSON.stringify(dataArray));
                             sessionStorage.setItem('endstatus', JSON.stringify(table));
+                            sessionStorage.setItem('win_or_lose', 0);
                             window.location.href = './clear.html';
                         }
                         ox *= -1;
