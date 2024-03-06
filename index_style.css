@@ -1,0 +1,153 @@
+body {
+    text-align: center;
+    margin: 5vh 0 0 0;
+}
+
+#container {
+    display: flex;
+    margin: 5vh 35vw 0 35vw;
+}
+
+#left {
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    width: 75px;
+    height: 75px;
+    border: solid 3px #000;
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+}
+
+#left:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75px;
+    height: 75px;
+    background-color: #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0, 0);
+    transition: transform ease 0.4s;
+}
+
+#left:hover:after {
+    transform: translate(-50%, -50%) scale(1.0, 1.0);
+}
+
+#left:before {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 55%;
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 0 0 5px 5px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: border-color ease 0.1s;
+}
+
+#left:hover:before {
+    border-color: #fff;
+}
+
+#player_turn {
+    height:80px;
+    width: auto;
+    margin:auto;
+}
+
+#right {
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    width: 75px;
+    height: 75px;
+    border: solid 3px #000;
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+}
+
+#right:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75px;
+    height: 75px;
+    background-color: #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0, 0);
+    transition: transform ease 0.4s;
+}
+
+#right:hover:after {
+    transform: translate(-50%, -50%) scale(1.0, 1.0);
+}
+
+#right:before {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 45%;
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 5px 5px 0 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: border-color ease 0.1s;
+}
+
+#right:hover:before {
+    border-color: #fff;
+}
+
+#start {
+    box-sizing: border-box;
+    display: block;
+    margin: 3vh auto;
+    position: relative;
+    width: 15vw;
+    height: 3vw;
+    border: solid 3px #000;
+    border-radius: 2vw;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+}
+
+#start:after {
+    content: "";
+    position: absolute;
+    width: 15vw;
+    height: 3vw;
+    background-color: #000;
+    border-radius: 2vw;
+    transform: translate(-50%, -50%) scale(0, 0);
+    transition: transform ease 0.4s;
+}
+
+#start:hover:after {
+    transform: translate(-50%, -50%) scale(1.0, 1.0);
+}
+
+#start:before {
+    content: "開始";
+    font-size: 2vw;
+    top: 0%;
+    left: 37%;
+    position: absolute;
+    z-index: 10;
+    color: #000;
+    transition: color ease 0.1s;
+}
+
+#start:hover:before {
+    color: #fff;
+}

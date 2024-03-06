@@ -4,212 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./index_style.css" rel="stylesheet">
     <title>OX</title>
     <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            /* ページの背景色 */
-        }
 
-        #myCanvas {
-            background-color: rgb(194, 184, 166);
-            border: 1px solid #000;
-            /* キャンバスの境界線 */
-        }
     </style>
 </head>
 
 <body>
-    <canvas id="myCanvas"></canvas>
+    <h1>OXゲーム</h1>
+    <p>コンピュータの戦績</p>
+    <p><span id="win"></span>勝</p>
+    <p><span id="lose"></span>敗</p>
+    <p><span id="draw"></span>分</p>
+    <p>あなたの手番</p>
+    <div id=container>
+        <button id="left" onclick="select_button_click()"></button>
+        <img id="player_turn" src="./images/image_O.png">
+        <button id="right" onclick="select_button_click()"></button>
+    </div><br>
+    <button id="start" onclick="start_button_click()"></button>
     <script>
-        const canvas = document.getElementById('myCanvas');
-        const ctx = canvas.getContext('2d');
-        const image_O = new Image();
-        const image_X = new Image();
-        var table = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-        var ox = 1, turn = 0, total_num, total_val;
-        image_O.onload = function () {
-            image_X.onload = function () {
-                init();
-                if (ox === -1) {
-                    ox *= -1;
-                    npc(turn, ox);
-                    ox *= -1;
-                }
-            }
-            image_X.src = './images/image_X.png';
-        }
-        image_O.src = './images/image_O.png';
-
-        const init = () => {
-            canvas.height = window.innerHeight / 1.2;
-            canvas.width = canvas.height;
-            ctx.fillStyle = '#000000';
-            for (let i = 0; i < 2; i++) {
-                ctx.fillRect(canvas.width / 3 * (i + 1), 0, 1, canvas.height);
-            }
-            for (let i = 0; i < 2; i++) {
-                ctx.fillRect(0, canvas.height / 3 * (i + 1), canvas.width, 1);
-            }
-        }
-
-        function judge(ox) {
-            for (let k = 0; k < 3; k++) {
-                if (table[k][0] == ox && table[k][1] == ox && table[k][2] == ox) {
-                    return 1;
-                }
-                if (table[0][k] == ox && table[1][k] == ox && table[2][k] == ox) {
-                    return 1;
-                }
-            }
-            if (table[0][0] == ox && table[1][1] == ox && table[2][2] == ox) {
-                return 1;
-            }
-            if (table[2][0] == ox && table[1][1] == ox && table[0][2] == ox) {
-                return 1;
-            }
-            return 0;
-        }
-
-        function npc(c_turn, c_ox) {
-            var score = [[-2, -2, -2], [-2, -2, -2], [-2, -2, -2]];
-            var x = null, y = null, max = -2;
-            var win_per = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-            for (let l = 0; l < 3; l++) {
-                for (let i = 0; i < 3; i++) {
-                    if (table[l][i] === 0) {
-                        total_num = 0;
-                        total_val = 0;
-                        score[l][i] = npc_rec(c_ox, c_turn, i, l, 1);
-                        win_per[l][i] = total_val / total_num;
-                    }
-                }
-            }
-            for (let l = 0; l < 3; l++) {
-                for (let i = 0; i < 3; i++) {
-                    if (table[l][i] === 0) {
-                        if (max < score[l][i]) {
-                            max = score[l][i];
-                            x = i;
-                            y = l;
-                        }
-                        else if (max === score[l][i] && win_per[y][x] < win_per[l][i]) {
-                            x = i;
-                            y = l;
-                        }
-                    }
-                }
-            }
-            table[y][x] = ox;
-            turn += 1;
-            console.log(win_per);
-            if (ox === 1) {
-                ctx.drawImage(image_O, canvas.width / 3 * x, canvas.width / 3 * y, canvas.width / 3, canvas.height / 3);
-            }
-            else if (ox === -1) {
-                ctx.drawImage(image_X, canvas.width / 3 * x, canvas.width / 3 * y, canvas.width / 3, canvas.height / 3);
-            }
-        }
-
-        function npc_rec(c_ox, c_turn, i, l, npc_turn) {
-            var score = [[-2, -2, -2], [-2, -2, -2], [-2, -2, -2]]
-            var flag = 0;
-            table[l][i] = c_ox;
-            if (judge(c_ox)) {
-                table[l][i] = 0;
-                total_num += 1;
-                total_val += npc_turn;
-                return npc_turn;
-            }
-            else if (c_turn === 8) {
-                table[l][i] = 0;
-                total_num += 1;
-                return 0;
+        var num = 0;
+        var pics_src = new Array("./images/image_O.png", "./images/image_X.png");
+        function select_button_click() {
+            if (num === 1) {
+                num = 0;
             }
             else {
-                for (let j = 0; j < 3; j++) {
-                    for (let m = 0; m < 3; m++) {
-                        if (table[j][m] === 0) {
-                            if (c_ox === 1) {
-                                score[j][m] = npc_rec(-1, c_turn + 1, m, j, npc_turn * -1);
-                            }
-                            else if (c_ox === -1) {
-                                score[j][m] = npc_rec(1, c_turn + 1, m, j, npc_turn * -1);
-                            }
-                        }
-                    }
-                }
-                table[l][i] = 0;
-                for (let j = 0; j < 3; j++) {
-                    for (let m = 0; m < 3; m++) {
-                        if (npc_turn === 1 && score[j][m] === -1) {
-                            return -1;
-                        } else if (npc_turn === -1 && score[j][m] === 1) {
-                            return 1;
-                        } else if (score[j][m] === 0) {
-                            flag = 1;
-                        }
-                    }
-                }
-                if (flag) {
-                    return 0;
-                } else if (npc_turn === 1) {
-                    return 1;
-                } else if (npc_turn === -1) {
-                    return -1;
-                }
+                num++;
             }
+            document.getElementById("player_turn").src = pics_src[num];
         }
 
-        init();
-
-        function ButtonClick(event) {
-            const x = event.clientX - canvas.getBoundingClientRect().left;
-            const y = event.clientY - canvas.getBoundingClientRect().top;
-            var set = 0;
-            for (let l = 0; l < 3; l++) {
-                for (let i = 0; i < 3; i++) {
-                    if (x > canvas.width / 3 * i && x < canvas.width / 3 * (i + 1) && y > canvas.height / 3 * l && y < canvas.height / 3 * (l + 1) && table[l][i] === 0) {
-                        table[l][i] = ox;
-                        turn += 1;
-                        if (ox === 1) {
-                            ctx.drawImage(image_O, canvas.width / 3 * i, canvas.width / 3 * l, canvas.width / 3, canvas.height / 3);
-                        } else if (ox === -1) {
-                            ctx.drawImage(image_X, canvas.width / 3 * i, canvas.width / 3 * l, canvas.width / 3, canvas.height / 3);
-                        }
-                        if (judge(ox)) {
-                            console.log("プレイヤー クリア");
-                        }
-                        if (turn === 9) {
-                            console.log("Draw");
-                        }
-                        ox *= -1;
-                        npc(turn, ox);
-                        if (judge(ox)) {
-                            console.log("NPC クリア");
-                        }
-                        if (turn === 9) {
-                            console.log("Draw");
-                        }
-                        ox *= -1;
-                        set = 1;
-                        break;
-                    }
-                }
-                if (set === 1) {
-                    break;
-                }
-            }
+        function start_button_click() {
+            sessionStorage.setItem('passData', JSON.stringify(num));
+            window.location.href = './game.html';
         }
-        canvas.addEventListener('click', ButtonClick);
+
+        //localStorage.clear();
+        var dataArrayString = window.localStorage.getItem('data');
+        var dataArray;
+        if (dataArrayString === null) {
+            localStorage.setItem('data', JSON.stringify([0, 0, 0]));
+            dataArray = [0, 0, 0];
+        } else {
+            dataArray = JSON.parse(dataArrayString);
+        }
+        document.getElementById('win').textContent = dataArray[0];
+        document.getElementById('lose').textContent = dataArray[1];
+        document.getElementById('draw').textContent = dataArray[2];
+        //console.log(dataArray);
     </script>
-
-
 </body>
 
 </html>

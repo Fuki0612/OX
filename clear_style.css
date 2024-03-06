@@ -1,0 +1,62 @@
+body {
+    text-align: center;
+    font-size: 4vh;
+}
+
+#myCanvas {
+    background-color: rgb(194, 184, 166);
+    border: 1px solid #000;
+}
+
+#container {
+    display: flex;
+    justify-content: center; /* 水平方向の中央寄せ */
+    align-items: center;     /* 垂直方向の中央寄せ */
+}
+
+#player_turn {
+    height: 7vh;
+    margin-left: 1vw;
+}
+
+#return {
+    box-sizing: border-box;
+    display: block;
+    margin: 7vh auto;
+    position: relative;
+    width: 25vw;
+    height: 4vw;
+    border: solid 3px #000;
+    border-radius: 2vw;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+}
+
+#return:after {
+    content: "";
+    position: absolute;
+    width: 25vw;
+    height: 4vw;
+    background-color: #000;
+    border-radius: 2vw;
+    transform: translate(-50%, -50%) scale(0, 0);
+    transition: transform ease 0.4s;
+}
+
+#return:hover:after {
+    transform: translate(-50%, -50%) scale(1.0, 1.0);
+}
+
+#return:before {
+    content: "タイトルに戻る";
+    font-size: 2vw;
+    top: 8%;
+    left: 22%;
+    position: absolute;
+    z-index: 10;
+    color: #000;
+    transition: color ease 0.1s;
+}
+
+#return:hover:before {
+    color: #fff;
+}
