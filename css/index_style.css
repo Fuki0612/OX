@@ -4,7 +4,7 @@ body {
     padding: 0%;
     font-size: 4vh;
     user-select: none;
-    background-image: url("./images/bg_image.jpg");
+    background-image: url("../images/bg_image.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -25,7 +25,9 @@ body {
 
 body p {
     margin: 0%;
+    color:#fff
 }
+
 #container {
     display: flex;
     margin: 0 35vw 2vh 35vw;
@@ -34,6 +36,7 @@ body p {
 .text {
     margin: 0 4vw 0 4vw;
     font-size: 7vh;
+    color:#000
 }
 
 #left {

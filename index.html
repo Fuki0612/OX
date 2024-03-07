@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./index_style.css" rel="stylesheet">
+    <link href="./css/index_style.css" rel="stylesheet">
     <title>OX</title>
     <style>
 
@@ -15,9 +15,9 @@
     <p><img id="title" src="./images/OXtitle.png"></p>
     <p>コンピュータの戦績</p>
     <div id=text_container>
-        <p class = text><span id="win"></span>勝</p>
-        <p class = text><span id="lose"></span>敗</p>
-        <p class = text><span id="draw"></span>分</p>
+        <p class=text><span id="win"></span>勝</p>
+        <p class=text><span id="lose"></span>敗</p>
+        <p class=text><span id="draw"></span>分</p>
     </div>
     <p>あなたの手番</p>
     <div id=container>
@@ -41,22 +41,31 @@
 
         function start_button_click() {
             sessionStorage.setItem('passData', JSON.stringify(num));
-            window.location.href = './game.html';
+            window.location.href = './src/game.html';
         }
 
-        //localStorage.clear();
-        var dataArrayString = window.localStorage.getItem('data');
-        var dataArray;
-        if (dataArrayString === null) {
-            localStorage.setItem('data', JSON.stringify([0, 0, 0]));
-            dataArray = [0, 0, 0];
-        } else {
-            dataArray = JSON.parse(dataArrayString);
+        function init() {
+            var dataArrayString = window.localStorage.getItem('data');
+            var dataArray;
+            if (dataArrayString === null) {
+                localStorage.setItem('data', JSON.stringify([0, 0, 0]));
+                dataArray = [0, 0, 0];
+            } else {
+                dataArray = JSON.parse(dataArrayString);
+            }
+            document.getElementById('win').textContent = dataArray[0];
+            document.getElementById('lose').textContent = dataArray[1];
+            document.getElementById('draw').textContent = dataArray[2];
         }
-        document.getElementById('win').textContent = dataArray[0];
-        document.getElementById('lose').textContent = dataArray[1];
-        document.getElementById('draw').textContent = dataArray[2];
-        //console.log(dataArray);
+
+        init();
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                localStorage.clear();
+                init();
+            }
+        });
     </script>
 </body>
 

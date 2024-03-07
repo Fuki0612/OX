@@ -8,26 +8,60 @@
     <style>
         body {
             margin: 0;
-            display: flex;
+            padding: 0;
             justify-content: center;
             align-items: center;
+            display: flex;
             height: 100vh;
-            background-image: url("./images/bg_image.jpg");
+            background-image: url("../images/bg_image.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             /* ページの背景色 */
         }
 
+        #container {
+            display: flex;
+            text-align: center;
+        }
+
+        #text {
+            font-size: 5vh;
+            padding: 0;
+            margin: auto 1vw auto 0;
+            width: 30vw;
+            background-color: antiquewhite;
+            border: solid 1px #000;
+            border-radius: 3vw;
+        }
+
+        #turn {
+            font-size: 10vh;
+        }
+
         #myCanvas {
             background-color: rgb(194, 184, 166);
-            border: 1px solid #000;
-            /* キャンバスの境界線 */
+            margin: auto;
+            flex: 1;
+        }
+
+        #turn_img {
+            height: 30vh;
+            width: auto;
+            margin: auto 5vw auto 5vw;
+            padding: 2vh;
+            background-color: antiquewhite;
+            border: solid 1px #000;
+            border-radius: 3vw;
         }
     </style>
 </head>
 
 <body>
-    <canvas id="myCanvas"></canvas>
+    <div id="container">
+        <p id="text"><span id="turn"></span><br>の番です</p>
+        <canvas id="myCanvas"></canvas>
+        <img id="turn_img">
+    </div>
     <script>
         const canvas = document.getElementById('myCanvas');
         const ctx = canvas.getContext('2d');
@@ -35,6 +69,7 @@
         const image_X = new Image();
         var table = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
         var ox, turn = 0, total_num, total_val;
+        let isProcessing = false;
         var passDataString = sessionStorage.getItem('passData');
         var passData = JSON.parse(passDataString);
         if (passData === 0) {
@@ -51,11 +86,17 @@
                     ox *= -1;
                 }
             }
-            image_X.src = './images/image_X.png';
+            image_X.src = '../images/image_X.png';
         }
-        image_O.src = './images/image_O.png';
+        image_O.src = '../images/image_O.png';
 
         const init = () => {
+            document.getElementById("turn").innerHTML = "プレイヤー";
+            if (ox === 1) {
+                document.getElementById("turn_img").src = image_O.src;
+            } else {
+                document.getElementById("turn_img").src = image_X.src;
+            }
             canvas.height = window.innerHeight / 1.2;
             canvas.width = canvas.height;
             ctx.fillStyle = '#000000';
@@ -177,6 +218,10 @@
         init();
 
         function ButtonClick(event) {
+            if (isProcessing) {
+                return;
+            }
+            isProcessing = true;
             const x = event.clientX - canvas.getBoundingClientRect().left;
             const y = event.clientY - canvas.getBoundingClientRect().top;
             var set = 0;
@@ -190,6 +235,7 @@
                         } else if (ox === -1) {
                             ctx.drawImage(image_X, canvas.width / 3 * i, canvas.width / 3 * l, canvas.width / 3, canvas.height / 3);
                         }
+                        document.getElementById("turn").innerHTML = "コンピュータ";
                         if (judge(ox)) {
                             var dataArrayString = window.localStorage.getItem('data');
                             dataArray = JSON.parse(dataArrayString);
@@ -209,36 +255,52 @@
                             window.location.href = './clear.html';
                         }
                         ox *= -1;
-                        npc(turn, ox);
-                        if (judge(ox)) {
-                            var dataArrayString = window.localStorage.getItem('data');
-                            dataArray = JSON.parse(dataArrayString);
-                            dataArray[0] += 1;
-                            localStorage.setItem('data', JSON.stringify(dataArray));
-                            sessionStorage.setItem('endstatus', JSON.stringify(table));
-                            sessionStorage.setItem('win_or_lose', -1);
-                            window.location.href = './clear.html';
+                        if (ox === 1) {
+                            document.getElementById("turn_img").src = image_O.src;
+                        } else {
+                            document.getElementById("turn_img").src = image_X.src;
                         }
-                        if (turn === 9) {
-                            var dataArrayString = window.localStorage.getItem('data');
-                            dataArray = JSON.parse(dataArrayString);
-                            dataArray[2] += 1;
-                            localStorage.setItem('data', JSON.stringify(dataArray));
-                            sessionStorage.setItem('endstatus', JSON.stringify(table));
-                            sessionStorage.setItem('win_or_lose', 0);
-                            window.location.href = './clear.html';
-                        }
-                        ox *= -1;
-                        set = 1;
-                        break;
+                        setTimeout(function () {
+                            npc(turn, ox);
+                            document.getElementById("turn").innerHTML = "プレイヤー";
+                            if (ox === -1) {
+                                document.getElementById("turn_img").src = image_O.src;
+                            } else {
+                                document.getElementById("turn_img").src = image_X.src;
+                            }
+                            if (judge(ox)) {
+                                var dataArrayString = window.localStorage.getItem('data');
+                                dataArray = JSON.parse(dataArrayString);
+                                dataArray[0] += 1;
+                                localStorage.setItem('data', JSON.stringify(dataArray));
+                                sessionStorage.setItem('endstatus', JSON.stringify(table));
+                                sessionStorage.setItem('win_or_lose', -1);
+                                window.location.href = './clear.html';
+                            }
+                            if (turn === 9) {
+                                var dataArrayString = window.localStorage.getItem('data');
+                                dataArray = JSON.parse(dataArrayString);
+                                dataArray[2] += 1;
+                                localStorage.setItem('data', JSON.stringify(dataArray));
+                                sessionStorage.setItem('endstatus', JSON.stringify(table));
+                                sessionStorage.setItem('win_or_lose', 0);
+                                window.location.href = './clear.html';
+                            }
+                            ox *= -1;
+                            set = 1;
+                            isProcessing = false;
+                        }, 300);
                     }
-                }
-                if (set === 1) {
-                    break;
+
                 }
             }
         }
         canvas.addEventListener('click', ButtonClick);
+
+        function sleep(waitMsec) {
+            var startMsec = new Date();
+            while (new Date() - startMsec < waitMsec);
+        }
     </script>
 
 

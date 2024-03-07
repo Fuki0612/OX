@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./clear_style.css" rel="stylesheet">
+    <link href="../css/clear_style.css" rel="stylesheet">
     <title>OX</title>
 </head>
 
@@ -26,14 +26,14 @@
             image_X.onload = function () {
                 init();
             }
-            image_X.src = './images/image_X.png';
+            image_X.src = '../images/image_X.png';
         }
-        image_O.src = './images/image_O.png';
+        image_O.src = '../images/image_O.png';
 
         if (OX === 0) {
-            document.getElementById("player_turn").src = './images/image_O.png';
+            document.getElementById("player_turn").src = '../images/image_O.png';
         } else {
-            document.getElementById("player_turn").src = './images/image_X.png';
+            document.getElementById("player_turn").src = '../images/image_X.png';
         }
 
         function init() {
@@ -73,7 +73,7 @@
 
         function return_button_click() {
             sessionStorage.clear;
-            window.location.href = './index.html';
+            window.location.href = '../index.html';
         }
     </script>
 </body>
