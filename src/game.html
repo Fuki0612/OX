@@ -16,6 +16,7 @@
             background-image: url("../images/bg_image.jpg");
             background-size: cover;
             background-repeat: no-repeat;
+            user-select: none;
             /* ページの背景色 */
         }
 
@@ -42,6 +43,7 @@
             background-color: rgb(194, 184, 166);
             margin: auto;
             flex: 1;
+            cursor: pointer;
         }
 
         #turn_img {
@@ -218,12 +220,19 @@
         init();
 
         function ButtonClick(event) {
+            const x = event.clientX - canvas.getBoundingClientRect().left;
+            const y = event.clientY - canvas.getBoundingClientRect().top;
+            for (let l = 0; l < 3; l++) {
+                for (let i = 0; i < 3; i++) {
+                    if (x > canvas.width / 3 * i && x < canvas.width / 3 * (i + 1) && y > canvas.height / 3 * l && y < canvas.height / 3 * (l + 1) && table[l][i] != 0) {
+                        return;
+                    }
+                }
+            }
             if (isProcessing) {
                 return;
             }
             isProcessing = true;
-            const x = event.clientX - canvas.getBoundingClientRect().left;
-            const y = event.clientY - canvas.getBoundingClientRect().top;
             var set = 0;
             for (let l = 0; l < 3; l++) {
                 for (let i = 0; i < 3; i++) {
@@ -289,9 +298,8 @@
                             ox *= -1;
                             set = 1;
                             isProcessing = false;
-                        }, 300);
+                        }, 500);
                     }
-
                 }
             }
         }
