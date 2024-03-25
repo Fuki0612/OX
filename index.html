@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/index_style.css" rel="stylesheet">
+    <link href="./images/shortcut.png" rel="shortcut icon">
     <title>OX</title>
     <style>
 
@@ -12,20 +13,22 @@
 </head>
 
 <body>
-    <p><img id="title" src="./images/OXtitle.png"></p>
-    <p>コンピュータの戦績</p>
-    <div id=text_container>
-        <p class=text><span id="win"></span>勝</p>
-        <p class=text><span id="lose"></span>敗</p>
-        <p class=text><span id="draw"></span>分</p>
-    </div>
-    <p>あなたの手番</p>
-    <div id=container>
-        <button id="left" onclick="select_button_click()"></button>
-        <img id="player_turn" src="./images/image_O.png">
-        <button id="right" onclick="select_button_click()"></button>
-    </div><br>
-    <button id="start" onclick="start_button_click()"></button>
+    <main>
+        <p><img id="title" src="./images/OXtitle.png"></p>
+        <p>コンピュータの戦績</p>
+        <div id=text_container>
+            <p class=text><span id="win"></span>勝</p>
+            <p class=text><span id="lose"></span>敗</p>
+            <p class=text><span id="draw"></span>分</p>
+        </div>
+        <p>あなたの手番</p>
+        <div id=container>
+            <button id="left" onclick="select_button_click()"></button>
+            <img id="player_turn" src="./images/image_O.png">
+            <button id="right" onclick="select_button_click()"></button>
+        </div><br>
+        <button id="start" onclick="start_button_click()"></button>
+    </main>
     <script>
         var num = 0;
         var pics_src = new Array("./images/image_O.png", "./images/image_X.png");

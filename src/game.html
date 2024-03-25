@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../images/shortcut.png" rel="shortcut icon">
     <title>OX</title>
     <style>
         body {
@@ -254,7 +255,7 @@
                             sessionStorage.setItem('win_or_lose', 1);
                             window.location.href = './clear.html';
                         }
-                        if (turn === 9) {
+                        else if (turn === 9) {
                             var dataArrayString = window.localStorage.getItem('data');
                             dataArray = JSON.parse(dataArrayString);
                             dataArray[2] += 1;
@@ -286,7 +287,7 @@
                                 sessionStorage.setItem('win_or_lose', -1);
                                 window.location.href = './clear.html';
                             }
-                            if (turn === 9) {
+                            else if (turn === 9) {
                                 var dataArrayString = window.localStorage.getItem('data');
                                 dataArray = JSON.parse(dataArrayString);
                                 dataArray[2] += 1;
