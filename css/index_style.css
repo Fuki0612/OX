@@ -1,193 +1,328 @@
-body {
-    text-align: center;
-    margin: 0 0 0 0;
-    padding: 0%;
-    font-size: 4vh;
-    user-select: none;
-    background-image: url("../images/bg_image.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+@media screen and (min-width:768px) {
+    body {
+        text-align: center;
+        margin: 0 0 0 0;
+        padding: 0%;
+        font-size: 4vh;
+        user-select: none;
+        background-image: url("../images/bg_image.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #title {
+        font-size: 8vh;
+        margin: 2vh 0;
+    }
+
+    #text_container {
+        justify-content: center;
+        display: flex;
+        margin: 0 26vw 2vh 26vw;
+        background-color: antiquewhite;
+        border: solid 3px #000;
+        border-radius: 5vw;
+    }
+
+    body p {
+        margin: 0%;
+        color: #fff
+    }
+
+    #container {
+        display: flex;
+        margin: 0 35vw 2vh 35vw;
+    }
+
+    .text {
+        margin: 0 4vw 0 4vw;
+        font-size: 7vh;
+        color: #000
+    }
+
+    #left {
+        box-sizing: border-box;
+        display: block;
+        position: relative;
+        width: 75px;
+        height: 75px;
+        margin-top: 3vh;
+        border: solid 3px #000;
+        border-radius: 50%;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        cursor: pointer;
+    }
+
+    #left:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 75px;
+        height: 75px;
+        background-color: #000;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0, 0);
+        transition: transform ease 0.4s;
+    }
+
+    #left:hover:after {
+        transform: translate(-50%, -50%) scale(1.0, 1.0);
+    }
+
+    #left:before {
+        content: "";
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        left: 55%;
+        width: 20px;
+        height: 20px;
+        border-style: solid;
+        border-color: #000;
+        border-width: 0 0 5px 5px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        transition: border-color ease 0.1s;
+    }
+
+    #left:hover:before {
+        border-color: #fff;
+    }
+
+    #player_turn {
+        height: 80px;
+        width: auto;
+        margin: auto;
+        padding: 2vh;
+        background-color: antiquewhite;
+        border: solid 1px #000;
+        border-radius: 5vw;
+    }
+
+    #right {
+        box-sizing: border-box;
+        display: block;
+        position: relative;
+        width: 75px;
+        height: 75px;
+        margin-top: 3vh;
+        border: solid 3px #000;
+        border-radius: 50%;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        cursor: pointer;
+    }
+
+    #right:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 75px;
+        height: 75px;
+        background-color: #000;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0, 0);
+        transition: transform ease 0.4s;
+    }
+
+    #right:hover:after {
+        transform: translate(-50%, -50%) scale(1.0, 1.0);
+    }
+
+    #right:before {
+        content: "";
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        left: 45%;
+        width: 20px;
+        height: 20px;
+        border-style: solid;
+        border-color: #000;
+        border-width: 5px 5px 0 0;
+        transform: translate(-50%, -50%) rotate(45deg);
+        transition: border-color ease 0.1s;
+    }
+
+    #right:hover:before {
+        border-color: #fff;
+    }
+
+    #start {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        width: 15vw;
+        height: 3vw;
+        border: solid 3px #000;
+        border-radius: 2vw;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        cursor: pointer;
+    }
+
+    #start:after {
+        content: "";
+        position: absolute;
+        width: 15vw;
+        height: 3vw;
+        background-color: #000;
+        border-radius: 2vw;
+        transform: translate(-50%, -50%) scale(0, 0);
+        transition: transform ease 0.4s;
+    }
+
+    #start:hover:after {
+        transform: translate(-50%, -50%) scale(1.0, 1.0);
+    }
+
+    #start:before {
+        content: "開始";
+        font-size: 2vw;
+        top: 0%;
+        left: 37%;
+        position: absolute;
+        z-index: 10;
+        color: #000;
+        transition: color ease 0.1s;
+    }
+
+    #start:hover:before {
+        color: #fff;
+    }
 }
 
-#title {
-    font-size: 8vh;
-    margin: 2vh 0;
-}
+@media screen and (max-width:767px){
+    body {
+        text-align: center;
+        margin: 0 0 0 0;
+        padding: 0%;
+        font-size: 8vw;
+        user-select: none;
+        background-image: url("../images/bg_image.jpg");
+        background-size: cover;
+    }
 
-#text_container {
-    justify-content: center;
-    display: flex;
-    margin: 0 26vw 2vh 26vw;
-    background-color: antiquewhite;
-    border: solid 3px #000;
-    border-radius: 5vw;
-}
+    #title {
+        font-size: 8vh;
+        margin: 3vh 0;
+    }
 
-body p {
-    margin: 0%;
-    color:#fff
-}
+    #text_container {
+        justify-content: center;
+        display: flex;
+        margin: 0 10vw 2vw 10vw;
+        background-color: antiquewhite;
+        border: solid 3px #000;
+        border-radius: 5vw;
+    }
 
-#container {
-    display: flex;
-    margin: 0 35vw 2vh 35vw;
-}
+    body p {
+        margin: 1vh 0;
+        color: #fff
+    }
 
-.text {
-    margin: 0 4vw 0 4vw;
-    font-size: 7vh;
-    color:#000
-}
+    #container {
+        display: flex;
+        margin: 2vh 5vw;
+    }
 
-#left {
-    box-sizing: border-box;
-    display: block;
-    position: relative;
-    width: 75px;
-    height: 75px;
-    margin-top: 3vh;
-    border: solid 3px #000;
-    border-radius: 50%;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
-    cursor: pointer;
-}
+    .text {
+        margin: 0 4vw 0 4vw;
+        font-size: 4vh;
+        color: #000
+    }
 
-#left:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 75px;
-    height: 75px;
-    background-color: #000;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0, 0);
-    transition: transform ease 0.4s;
-}
+    #player_turn {
+        height: 10vh;
+        width: auto;
+        margin: auto;
+        padding: 2vw;
+        background-color: antiquewhite;
+        border: solid 1px #000;
+        border-radius: 3vw;
+    }
 
-#left:hover:after {
-    transform: translate(-50%, -50%) scale(1.0, 1.0);
-}
+    #left {
+        box-sizing: border-box;
+        display: block;
+        position: relative;
+        width: 10vh;
+        height: 10vh;
+        margin-top: 1vh;
+        border: solid 3px #000;
+        border-radius: 50%;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        cursor: pointer;
+    }
 
-#left:before {
-    content: "";
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    left: 55%;
-    width: 20px;
-    height: 20px;
-    border-style: solid;
-    border-color: #000;
-    border-width: 0 0 5px 5px;
-    transform: translate(-50%, -50%) rotate(45deg);
-    transition: border-color ease 0.1s;
-}
+    #left:before {
+        content: "";
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        left: 55%;
+        width: 5vw;
+        height: 5vw;
+        border-style: solid;
+        border-color: #000;
+        border-width: 0 0 5px 5px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        transition: border-color ease 0.1s;
+    }
 
-#left:hover:before {
-    border-color: #fff;
-}
+    #right {
+        box-sizing: border-box;
+        display: block;
+        position: relative;
+        width: 10vh;
+        height: 10vh;
+        margin-top: 1vh;
+        border: solid 3px #000;
+        border-radius: 50%;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        cursor: pointer;
+    }
 
-#player_turn {
-    height:80px;
-    width: auto;
-    margin:auto;
-    padding: 2vh;
-    background-color: antiquewhite;
-    border: solid 1px #000;
-    border-radius: 5vw;
-}
+    #right:before {
+        content: "";
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        left: 45%;
+        width: 5vw;
+        height: 5vw;
+        border-style: solid;
+        border-color: #000;
+        border-width: 5px 5px 0 0;
+        transform: translate(-50%, -50%) rotate(45deg);
+        transition: border-color ease 0.1s;
+    }
 
-#right {
-    box-sizing: border-box;
-    display: block;
-    position: relative;
-    width: 75px;
-    height: 75px;
-    margin-top: 3vh;
-    border: solid 3px #000;
-    border-radius: 50%;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
-    cursor: pointer;
-}
+    #start {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        width: 70vw;
+        height: 7vh;
+        border: solid 3px #000;
+        border-radius: 5vw;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        cursor: pointer;
+    }
 
-#right:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 75px;
-    height: 75px;
-    background-color: #000;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0, 0);
-    transition: transform ease 0.4s;
-}
+    #start:before {
+        content: "開始";
+        font-size: 10vw;
+        top: 0%;
+        left: 37%;
+        position: absolute;
+        z-index: 10;
+        color: #000;
+        transition: color ease 0.1s;
+    }
 
-#right:hover:after {
-    transform: translate(-50%, -50%) scale(1.0, 1.0);
-}
-
-#right:before {
-    content: "";
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    left: 45%;
-    width: 20px;
-    height: 20px;
-    border-style: solid;
-    border-color: #000;
-    border-width: 5px 5px 0 0;
-    transform: translate(-50%, -50%) rotate(45deg);
-    transition: border-color ease 0.1s;
-}
-
-#right:hover:before {
-    border-color: #fff;
-}
-
-#start {
-    box-sizing: border-box;
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    width: 15vw;
-    height: 3vw;
-    border: solid 3px #000;
-    border-radius: 2vw;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
-    cursor: pointer;
-}
-
-#start:after {
-    content: "";
-    position: absolute;
-    width: 15vw;
-    height: 3vw;
-    background-color: #000;
-    border-radius: 2vw;
-    transform: translate(-50%, -50%) scale(0, 0);
-    transition: transform ease 0.4s;
-}
-
-#start:hover:after {
-    transform: translate(-50%, -50%) scale(1.0, 1.0);
-}
-
-#start:before {
-    content: "開始";
-    font-size: 2vw;
-    top: 0%;
-    left: 37%;
-    position: absolute;
-    z-index: 10;
-    color: #000;
-    transition: color ease 0.1s;
-}
-
-#start:hover:before {
-    color: #fff;
 }

@@ -4,59 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/game_style.css" rel="stylesheet">
     <link href="../images/shortcut.png" rel="shortcut icon">
     <title>OX</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            height: 100vh;
-            background-image: url("../images/bg_image.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            user-select: none;
-            /* ページの背景色 */
-        }
-
-        #container {
-            display: flex;
-            text-align: center;
-        }
-
-        #text {
-            font-size: 5vh;
-            padding: 0;
-            margin: auto 1vw auto 0;
-            width: 30vw;
-            background-color: antiquewhite;
-            border: solid 1px #000;
-            border-radius: 3vw;
-        }
-
-        #turn {
-            font-size: 10vh;
-        }
-
-        #myCanvas {
-            background-color: rgb(194, 184, 166);
-            margin: auto;
-            flex: 1;
-            cursor: pointer;
-        }
-
-        #turn_img {
-            height: 30vh;
-            width: auto;
-            margin: auto 5vw auto 5vw;
-            padding: 2vh;
-            background-color: antiquewhite;
-            border: solid 1px #000;
-            border-radius: 3vw;
-        }
-    </style>
 </head>
 
 <body>
@@ -100,8 +50,14 @@
             } else {
                 document.getElementById("turn_img").src = image_X.src;
             }
-            canvas.height = window.innerHeight / 1.2;
-            canvas.width = canvas.height;
+            if (window.innerWidth >= 768){
+                canvas.height = window.innerHeight / 1.2;
+                canvas.width = canvas.height;
+            }
+            else {
+                canvas.height = window.innerWidth;
+                canvas.width = canvas.height;
+            }
             ctx.fillStyle = '#000000';
             for (let i = 0; i < 2; i++) {
                 ctx.fillRect(canvas.width / 3 * (i + 1), 0, 1, canvas.height);
