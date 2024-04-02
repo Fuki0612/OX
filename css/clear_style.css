@@ -1,74 +1,135 @@
-body {
-    text-align: center;
-    font-size: 4vh;
-    color: #fff;
-    background-image: url("../images/bg_image.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+@media screen and (min-width:768px) {
+    body {
+        text-align: center;
+        font-size: 4vh;
+        color: #fff;
+        background-image: url("../images/bg_image.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #myCanvas {
+        background-color: rgb(194, 184, 166);
+        border: 1px solid #000;
+    }
+
+    #win_or_lose {
+        margin: 0;
+        margin-top: 5vh;
+        font-size: 10vh;
+    }
+
+    #container {
+        display: flex;
+        justify-content: center;
+        /* 水平方向の中央寄せ */
+        align-items: center;
+        /* 垂直方向の中央寄せ */
+        margin-top: 0;
+    }
+
+    #player_turn {
+        height: 7vh;
+        margin-left: 1vw;
+    }
+
+    #return {
+        box-sizing: border-box;
+        display: block;
+        margin: 7vh auto;
+        position: relative;
+        width: 25vw;
+        height: 4vw;
+        border: solid 3px #000;
+        border-radius: 2vw;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        cursor: pointer;
+    }
+
+    #return:after {
+        content: "";
+        position: absolute;
+        width: 25vw;
+        height: 4vw;
+        background-color: #000;
+        border-radius: 2vw;
+        transform: translate(-50%, -50%) scale(0, 0);
+        transition: transform ease 0.4s;
+    }
+
+    #return:hover:after {
+        transform: translate(-50%, -50%) scale(1.0, 1.0);
+    }
+
+    #return:before {
+        content: "タイトルに戻る";
+        font-size: 2vw;
+        top: 8%;
+        left: 22%;
+        position: absolute;
+        z-index: 10;
+        color: #000;
+        transition: color ease 0.1s;
+    }
+
+    #return:hover:before {
+        color: #fff;
+    }
 }
 
-#myCanvas {
-    background-color: rgb(194, 184, 166);
-    border: 1px solid #000;
-}
+@media screen and (max-width:767px){
+    body {
+        text-align: center;
+        font-size: 4vh;
+        color: #fff;
+        background-image: url("../images/bg_image.jpg");
+        background-size: cover;
+    }
 
-#win_or_lose {
-    margin: 0;
-    margin-top: 5vh;
-    font-size: 10vh;
-}
+    #player_turn {
+        height: 10vh;
+    }
 
-#container {
-    display: flex;
-    justify-content: center; /* 水平方向の中央寄せ */
-    align-items: center;     /* 垂直方向の中央寄せ */
-    margin-top: 0;
-}
+    #myCanvas {
+        background-color: rgb(194, 184, 166);
+        border: 1px solid #000;
+    }
 
-#player_turn {
-    height: 7vh;
-    margin-left: 1vw;
-}
+    #win_or_lose {
+        margin: 0;
+        margin-top: 5vh;
+        font-size: 10vh;
+    }
 
-#return {
-    box-sizing: border-box;
-    display: block;
-    margin: 7vh auto;
-    position: relative;
-    width: 25vw;
-    height: 4vw;
-    border: solid 3px #000;
-    border-radius: 2vw;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
-    cursor: pointer;
-}
+    #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+    }
 
-#return:after {
-    content: "";
-    position: absolute;
-    width: 25vw;
-    height: 4vw;
-    background-color: #000;
-    border-radius: 2vw;
-    transform: translate(-50%, -50%) scale(0, 0);
-    transition: transform ease 0.4s;
-}
+    #return {
+        box-sizing: border-box;
+        display: block;
+        margin: 3vh auto;
+        position: relative;
+        width: 70vw;
+        height: 10vw;
+        border: solid 3px #000;
+        border-radius: 2vh;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        cursor: pointer;
+    }
 
-#return:hover:after {
-    transform: translate(-50%, -50%) scale(1.0, 1.0);
-}
+    #return:before {
+        content: "タイトルに戻る";
+        font-size: 8vw;
+        top: 0%;
+        left: 6vw;
+        position: absolute;
+        z-index: 10;
+        color: #000;
+        transition: color ease 0.1s;
+    }
 
-#return:before {
-    content: "タイトルに戻る";
-    font-size: 2vw;
-    top: 8%;
-    left: 22%;
-    position: absolute;
-    z-index: 10;
-    color: #000;
-    transition: color ease 0.1s;
-}
-
-#return:hover:before {
-    color: #fff;
 }

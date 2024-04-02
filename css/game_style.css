@@ -53,14 +53,44 @@
     body {
         margin: 0;
         padding: 0;
-        justify-content: center;
-        align-items: center;
-        display: flex;
         height: 100vh;
         background-image: url("../images/bg_image.jpg");
         background-size: cover;
         user-select: none;
+        text-align: center;
     }
 
+    #myCanvas {
+        background-color: rgb(194, 184, 166);
+        margin: auto;
+        flex: 1;
+        cursor: pointer;
+    }
+
+    #turn {
+        font-size: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    #text {
+        font-size: 7.5vw;
+        padding: 0;
+        margin: 3vh 5vw 5vh 4vw;
+        width: 90vw;
+        background-color: antiquewhite;
+        border: solid 1px #000;
+        border-radius: 3vw;
+        text-align: center;
+    }
     
+    #turn_img {
+        text-align: center;
+        height: 20vh;
+        width: auto;
+        margin: 5vh 5vw auto 5vw;
+        padding: 2vh;
+        background-color: antiquewhite;
+        border: solid 1px #000;
+        border-radius: 3vw;
+    }
 }

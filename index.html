@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/index_style.css" rel="stylesheet">
     <link href="./images/shortcut.png" rel="shortcut icon">
+    <link rel="manifest" href="./manifest.json">
     <title>OX</title>
     <style>
 
@@ -30,7 +31,6 @@
         <button id="start" onclick="start_button_click()"></button>
     </main>
     <script>
-        console.log(window.innerWidth);
         var num = 0;
         var pics_src = new Array("./images/image_O.png", "./images/image_X.png");
         function select_button_click() {
@@ -70,6 +70,14 @@
                 init();
             }
         });
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').then(registration => {
+                console.log('ServiceWorker registration successful.');
+            }).catch(err => {
+                console.log('ServiceWorker registration failed.');
+            });
+        }
     </script>
 </body>
 
